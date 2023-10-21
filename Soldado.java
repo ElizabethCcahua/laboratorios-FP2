@@ -4,6 +4,7 @@ class Soldado {
   private String nombre;
     private int fila;
     private int columna;
+    private String Caracteristica;
     private int nivelAtaque;
     private int nivelDefensa;
     private int nivelVida;
@@ -34,7 +35,13 @@ class Soldado {
     public void setNombre(String nuevoNombre) {
     nombre = nuevoNombre;
     }
-    
+
+    public String getCaracteristica() {
+    return Caracteristica;
+}
+    public void setCaracteristica(String caracteristica) {
+    Caracteristica = caracteristica;
+}
     public Soldado() {
         this.nombre = "";
         this.nivelAtaque = Aleatorio(1, 5);
@@ -57,7 +64,7 @@ class Soldado {
         this.vive = true;
     }
 
-    public Soldado(String nombre, int nivelAtaque, int nivelDefensa, int nivelVida, int vidaActual, int velocidad, String actitud, boolean vive) {
+    public Soldado( int nivelAtaque, int nivelDefensa, int nivelVida, int vidaActual, int velocidad, String actitud, boolean vive) {
         this.nombre = nombre;
         this.nivelAtaque = nivelAtaque;
         this.nivelDefensa = nivelDefensa;
