@@ -86,6 +86,27 @@ public static void mostrarTablero(Soldado[][] tablero) {
         System.out.println();
     }
 }
+     public static int obtenerFilaLlegada(int filaActual, String direccion) {
+        switch (direccion) {
+            case "arriba":
+                return filaActual - 1;
+            case "abajo":
+                return filaActual + 1;
+            default:
+                return filaActual;
+        }
+    }
+    
+    public static int obtenerColumnaLlegada(int columnaActual, String direccion) {
+        switch (direccion) {
+            case "izquierda":
+                return columnaActual - 1;
+            case "derecha":
+                return columnaActual + 1;
+            default:
+                return columnaActual;
+        }
+    }
     
     //metodo para poder obtener numeros aleatorios
     public static int Aleatorio(int min, int max) {
