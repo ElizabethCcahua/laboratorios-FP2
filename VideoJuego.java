@@ -109,6 +109,29 @@ public static void mostrarTablero(Soldado[][] tablero) {
         }
         return null;
     }
+
+    public static boolean ComprobarValidezMovimiento(ArrayList<Soldado> ejercitoTurno, ArrayList<Soldado> ejercitoEspera, int fila, int columna) {
+        //para q no se salga del tablero
+        if (fila < 1 || fila > 10 || columna < 1 || columna > 10) {
+            return false;
+        }
+        //para que no repita
+        for (Soldado soldado : ejercitoTurno) {
+            if (soldado.getFila() == fila && soldado.getColumna() == columna ) {
+                return false;
+            }
+            return true;
+        }
+        
+        for (Soldado soldado : ejercitoEspera) {
+            if (soldado.getFila() == fila && soldado.getColumna() == columna) {
+                return false;
+            }
+            return true;
+        }
+        return true;
+        
+    }
      public static int obtenerFilaLlegada(int filaActual, String direccion) {
         switch (direccion) {
             case "arriba":
