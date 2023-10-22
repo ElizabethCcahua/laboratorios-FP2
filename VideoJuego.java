@@ -22,7 +22,7 @@ public class VideoJuego {
         //CREAMOS UN ARREGLO BIDIMENSIONAL PARA EL TABLERO
        Soldado[][] tablero = new Soldado[10][10];
         ubicarSoldadosEnTablero(ejercito1, ejercito2, tablero);
-        mostrarTablero(ejercito1,ejercito2);
+        mostrarTablero(tablero);
 
         while (!ejercito1.isEmpty() && !ejercito2.isEmpty()) {
             // Turno de ejercito 1
