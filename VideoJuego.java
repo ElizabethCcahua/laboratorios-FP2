@@ -86,6 +86,51 @@ public static void mostrarTablero(Soldado[][] tablero) {
         System.out.println();
     }
 }
+
+     //ejercito turno: esta moviendo , ejercito espera: solo observa
+    public static void moverSoldado(Soldado[][] tablero,ArrayList<Soldado> ejercitoTurno, ArrayList<Soldado> ejercitoEspera) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("Ingrese las coordenadas del soldado para mover (fila, columna) y la dirección (arriba, abajo, izquierda, derecha)");
+        int filaActual = scanner.nextInt();
+        int columnaActual = scanner.nextInt();
+        String direccion = scanner.next();
+        // Verificar si hay un soldado en las coordenadas ingresadas
+        Soldado soldado = buscarSoldado(ejercitoTurno, filaActual, columnaActual);
+        while (soldado == null) {
+            System.out.println("No se encontro soldado en esa coordenada vuelva a ingresar datos: ");
+            filaActual = scanner.nextInt();
+            columnaActual = scanner.nextInt();
+            direccion = scanner.next();
+            soldado = buscarSoldado(ejercitoTurno, filaActual, columnaActual);
+        }
+        
+        System.out.println("Ingrese la dirección de movimiento (arriba, abajo, izquierda, derecha):");
+       
+        
+        // Verificar si el movimiento es válido
+        int filaDestino = obtenerFilaLlegada(filaActual, direccion);
+        int columnaDestino = obtenerColumnaLlegada(columnaActual, direccion);
+        
+          
+        while (!ComprobarValidezMovimiento(ejercitoTurno, ejercitoEspera, filaDestino, columnaDestino)) {
+            System.out.println("Movimiento inválido. Ingrese nueva dirección:");
+            direccion = scanner.next();
+            filaDestino = obtenerFilaLlegada(filaActual, direccion);
+            columnaDestino = obtenerColumnaLlegada(columnaActual, direccion);
+        }
+        
+        // Realizar el movimiento
+        cambiarPosicionSoldado(tablero,soldado, filaDestino, columnaDestino);
+        
+        // Verificar si hay un soldado rival en la posición destino para realizar la batalla
+        Soldado soldadoRivalTurno = buscarSoldado(ejercitoEspera, filaDestino, columnaDestino);
+        if (soldadoRivalTurno != null) {
+            soldadoGanador(soldado, soldadoRivalTurno);
+            ejercitoEspera.remove(soldadoRivalTurno);
+        }
+    }
+    
 //  cambia y actualiza las coordenadas del soldado
     public static void cambiarPosicionSoldado(Soldado[][] tablero,Soldado soldado, int nuevaFila, int nuevaColumna) {
     int filaActual = soldado.getFila();
