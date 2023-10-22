@@ -23,6 +23,32 @@ public class VideoJuego {
        Soldado[][] tablero = new Soldado[10][10];
         ubicarSoldadosEnTablero(ejercito1, ejercito2, tablero);
         mostrarTablero(ejercito1,ejercito2);
+
+        while (!ejercito1.isEmpty() && !ejercito2.isEmpty()) {
+            // Turno de ejercito 1
+            System.out.println("Turno del ejercito 1");
+            moverSoldado(tablero,ejercito1, ejercito2);
+           
+            mostrarTablero(tablero);
+            
+            // si queda vacio el ejercito 2 gana el 1
+            if (ejercito2.isEmpty()) {
+                System.out.println("EL GANADOR ES EL EJERCITO 1");
+                break;
+            }
+            
+            // Turno del ejercito 2
+            System.out.println("Turno del ejercito 2");
+            moverSoldado(tablero,ejercito2, ejercito1);
+       
+            mostrarTablero(tablero);
+            
+           // si queda vacio el ejercito 1 gana el 2
+            if (ejercito1.isEmpty()) {
+                System.out.println("EL GANADOR ES EL EJERCITO 2");
+                break;
+            }
+        }
     } 
 
     // Usamos metodo identificarParejaUnica para poder inicializar los ejercitos sin problemas en las posiciones 
