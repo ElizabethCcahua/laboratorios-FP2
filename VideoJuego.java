@@ -86,6 +86,29 @@ public static void mostrarTablero(Soldado[][] tablero) {
         System.out.println();
     }
 }
+//  cambia y actualiza las coordenadas del soldado
+    public static void cambiarPosicionSoldado(Soldado[][] tablero,Soldado soldado, int nuevaFila, int nuevaColumna) {
+    int filaActual = soldado.getFila();
+    int columnaActual = soldado.getColumna();
+    
+    // Vaciar la posición actual del soldado
+    tablero[filaActual - 1][columnaActual - 1] = null;
+    
+    // Actualizar las nuevas coordenadas del soldado
+    soldado.setFila(nuevaFila);
+    soldado.setColumna(nuevaColumna);
+    // Colocar al soldado en su nueva posición en el tablero
+    tablero[nuevaFila - 1][nuevaColumna - 1] = soldado;
+    }
+// busca si la posicion del soldado ya esta en 
+    public static Soldado buscarSoldado(ArrayList<Soldado> ejercito, int fila, int columna) {
+        for (Soldado soldado : ejercito) {
+            if (soldado.getFila() == fila && soldado.getColumna() == columna) {
+                return soldado;
+            }
+        }
+        return null;
+    }
      public static int obtenerFilaLlegada(int filaActual, String direccion) {
         switch (direccion) {
             case "arriba":
