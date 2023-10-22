@@ -132,6 +132,23 @@ public static void mostrarTablero(Soldado[][] tablero) {
         return true;
         
     }
+
+      
+    public static void soldadoGanador(Soldado soldado1, Soldado soldado2) {
+        double probabilidadSoldado1 = soldado1.getVidaActual() / (double) (soldado1.getVidaActual() + soldado2.getVidaActual());
+        double probabilidadSoldado2 = soldado2.getVidaActual() / (double) (soldado1.getVidaActual() + soldado2.getVidaActual());
+        
+        double random = Math.random();
+        
+        if (random < probabilidadSoldado1) {
+            System.out.println("¡El soldado " + soldado1.getNombre() + "perteneciente al ejercito 1"+" gano por la posibilidad del "+ probabilidadSoldado1+"%");
+            soldado1.setVidaActual(soldado1.getVidaActual() + 1);
+        } else {
+            System.out.println("¡El soldado " + soldado2.getNombre() + "perteneciente al ejercito 2"+" gano por la posibilidad del "+ probabilidadSoldado2+"%");
+            soldado2.setVidaActual(soldado2.getVidaActual() + 1);
+        }
+    }
+    
      public static int obtenerFilaLlegada(int filaActual, String direccion) {
         switch (direccion) {
             case "arriba":
