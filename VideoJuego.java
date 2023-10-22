@@ -1,5 +1,5 @@
 import java.util.*;
-public class BatallaDemo {
+public class VideoJuego {
     public static void main ( String [] args){
        ArrayList <Soldado> ejercito1 = new ArrayList<Soldado>();
        ArrayList<Soldado> ejercito2 = new ArrayList<Soldado>(); 
@@ -18,7 +18,10 @@ public class BatallaDemo {
     ejercito2.get(i).setNombre("Soldado" + i + "X2");
     ejercito2.get(i).setCaracteristica("B");// la caracteristica para identificar al ejercito 2 sera "B"
         }
-        
+
+        //CREAMOS UN ARREGLO BIDIMENSIONAL PARA EL TABLERO
+       Soldado[][] tablero = new Soldado[10][10];
+        ubicarSoldadosEnTablero(ejercito1, ejercito2, tablero);
         mostrarTablero(ejercito1,ejercito2);
     } 
 
@@ -58,31 +61,24 @@ public class BatallaDemo {
             return true;
     }
 
-    //metodo para ubicar ambos ejercitos (arraylist)y mostrarlos en el tablero (arreglo bidimensional)
-public static void mostrarTablero(ArrayList<Soldado> ejercito1, ArrayList<Soldado> ejercito2) {
-    Soldado[][] tablero = new Soldado[10][10];
-
-    // Ubica soldados del ejercito1 en el tablero
+   public static void ubicarSoldadosEnTablero(ArrayList<Soldado> ejercito1, ArrayList<Soldado> ejercito2, Soldado[][] tablero) {
     for (Soldado soldado : ejercito1) {
         int fila = soldado.getFila();
         int columna = soldado.getColumna();
-        System.out.println(fila+"-"+columna);
-        tablero[fila-1][columna-1] = soldado;
+        tablero[fila - 1][columna - 1] = soldado;
     }
-
-    // Ubica soldados del ejercito2 en el tablero
     for (Soldado soldado : ejercito2) {
         int fila = soldado.getFila();
         int columna = soldado.getColumna();
-        System.out.println(fila+"v"+columna);
-        tablero[fila-1][columna-1] = soldado;
+        tablero[fila - 1][columna - 1] = soldado;
     }
+}
 
-    // muestra el tablero
+public static void mostrarTablero(Soldado[][] tablero) {
     for (int i = 0; i < 10; i++) {
         for (int j = 0; j < 10; j++) {
             if (tablero[i][j] != null) {
-                System.out.print("|" + tablero[i][j].getCaracteristica() +"-"+tablero[i][j].getVidaActual());
+                System.out.print("|" + tablero[i][j].getCaracteristica() + "-" + tablero[i][j].getVidaActual());
             } else {
                 System.out.print("|___");
             }
