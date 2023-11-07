@@ -38,7 +38,7 @@ class Ejercito {
             System.out.println("El ejército ya tiene el máximo de soldados permitidos.");
         }
     }
-    // genera una cantidad aleatoria de soldados y la agrega
+    // permite crear soldados de manera manual 
     public void generarEjercitoSoldadosManualmente() {
     Scanner scanner = new Scanner(System.in);
     System.out.print("Ingrese la cantidad de soldados a agregar: ");
