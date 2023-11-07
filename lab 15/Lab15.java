@@ -2,7 +2,7 @@
 import java.util.*;
 public class Lab15 {
     
-
+// se creo un objeto ejercito para probar la egstion del menu
     public static void main(String[] args) {
         Ejercito ejercitoPrincipal = new Ejercito();
 
