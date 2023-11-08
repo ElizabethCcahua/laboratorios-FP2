@@ -190,4 +190,16 @@ class Soldado {
     public void morir() {
         this.vive = false;
     }
+
+// metodo (usando Method-Call Chaining)
+   public Soldado sumar(Soldado soldado) {
+    int nuevoNivelAtaque = this.nivelAtaque + soldado.nivelAtaque;
+    int nuevoNivelDefensa = this.nivelDefensa + soldado.nivelDefensa;
+    int nuevaVidaActual = this.vidaActual + soldado.vidaActual;
+    int nuevaVelocidad = this.velocidad + soldado.velocidad;
+    
+    Soldado soldadoSuma = new Soldado("SumaSoldado", nuevoNivelAtaque, nuevoNivelDefensa, nuevaVidaActual, nuevaVelocidad, "", "");
+    return soldadoSuma;
 }
+}
+ 
