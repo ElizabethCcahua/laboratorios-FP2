@@ -35,4 +35,20 @@ public class VideoJuego {
             
         } while (opcion != 3);
     }
-}
+
+    
+ public static void pregunta() {
+         Scanner scanner = new Scanner(System.in);
+         
+         int opcion = scanner.nextInt();
+            
+         System.out.println("1. volver a jugar");
+         System.out.println("2. volver al menu principal");
+                    
+                    switch (opcion) {
+                        case 1:
+                            jugarJuegoRapido() ;
+                        case 2:   
+                            menuPrincipal();
+                        }
+     }
