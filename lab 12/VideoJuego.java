@@ -18,10 +18,10 @@ public class VideoJuego {
             
             switch (opcion) {
                 case 1:
-                    
+                    jugarJuegoRapido();
                     break;
                 case 2:   
-                    
+                     ArrayList<Soldado>[] EjercitosModificados=gestionarEjercitos();
                     break;
                 case 3:
                     System.out.println("FIN");
