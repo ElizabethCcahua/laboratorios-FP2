@@ -20,9 +20,7 @@ public class VideoJuego {
                 case 1:
                     
                     break;
-                case 2:
-                    
-                    
+                case 2:   
                     
                     break;
                 case 3:
@@ -36,6 +34,32 @@ public class VideoJuego {
         } while (opcion != 3);
     }
 
+public static void jugarJuegoRapido() {
+        
+         Scanner scanner = new Scanner(System.in);
+        boolean salir = false;
+
+        while (!salir) {
+            System.out.println(" recuerde que para salir en cualquier momento solo escriba la palabra salir ");
+           
+            juegoRapido();
+            int opcion = scanner.nextInt();
+            switch (opcion) {
+                case 1:
+                    juegoRapido();
+                    pregunta();
+                    
+                    break;
+                case 2:
+                    salir = true;
+                     menuPrincipal();
+                    break;
+                default:
+                   System.out.println("no es una opcion valida");
+                    break;
+            }
+        }    
+    }
     
  public static void pregunta() {
          Scanner scanner = new Scanner(System.in);
@@ -52,6 +76,17 @@ public class VideoJuego {
                             menuPrincipal();
                         }
      }
+
+    public static void juegoRapido() {
+        // CODIGO LAB 11
+        System.out.println("juego rápido");
+         ArrayList<Soldado>[] ejercitosGenerados=generarEjercitos();
+         
+         ArrayList<Soldado> ejercito1 = ejercitosGenerados[0];
+           ArrayList<Soldado> ejercito2 =  ejercitosGenerados[1];
+              codigoJuegoRapido(ejercito1,ejercito2);
+       pregunta();
+    }
 
 public static ArrayList<Soldado>[] generarEjercitos() {
     ArrayList<Soldado> ejercito1 = new ArrayList<>();
@@ -77,6 +112,41 @@ public static ArrayList<Soldado>[] generarEjercitos() {
     
     return arregloEjercitos;
 }
+
+public static void codigoJuegoRapido(ArrayList<Soldado>  ejercito1,ArrayList<Soldado>  ejercito2) {
+   
+        //CREAMOS UN ARREGLO BIDIMENSIONAL PARA EL TABLERO
+       Soldado[][] tablero = new Soldado[10][10];
+        ubicarSoldadosEnTablero(ejercito1, ejercito2, tablero);
+        mostrarTablero(tablero);
+
+        while (!ejercito1.isEmpty() && !ejercito2.isEmpty()) {
+            // Turno de ejercito 1
+            System.out.println("Turno del ejercito 1");
+            moverSoldado(tablero,ejercito1, ejercito2);
+           
+            mostrarTablero(tablero);
+            
+            // si queda vacio el ejercito 2 gana el 1
+            if (ejercito2.isEmpty()) {
+                System.out.println("EL GANADOR ES EL EJERCITO 1");
+                break;
+            }
+            
+            // Turno del ejercito 2
+            System.out.println("Turno del ejercito 2");
+            moverSoldado(tablero,ejercito2, ejercito1);
+       
+            mostrarTablero(tablero);
+            
+           // si queda vacio el ejercito 1 gana el 2
+            if (ejercito1.isEmpty()) {
+                System.out.println("EL GANADOR ES EL EJERCITO 2");
+                break;
+            }
+        }
+    } 
+    
     public static void mostrarDatosEjercitos(ArrayList<Soldado>[] arregloEjercitos) {
     ArrayList<Soldado> ejercito1 = arregloEjercitos[0];
     ArrayList<Soldado> ejercito2 = arregloEjercitos[1];
