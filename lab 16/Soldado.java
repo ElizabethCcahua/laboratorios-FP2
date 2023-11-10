@@ -1,6 +1,4 @@
 
-package lab.pkg16;
-
 class Soldado {
     
   private String nombre;
