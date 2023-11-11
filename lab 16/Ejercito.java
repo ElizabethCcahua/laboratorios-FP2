@@ -227,6 +227,18 @@ public  void modificarSoldado() {
     public String toString() {
     return "\nEJERCITO:================> " + reino + "\n\nSoldados: " + misSoldados.toString();
 }
+
+    public int getCantidadSoldados() {
+        return misSoldados.size();
+    }
+
+    public int getSumatoriaNivelVidaSoldados() {
+        int sumatoriaNivelVida = 0;
+        for (Soldado soldado : misSoldados) {
+            sumatoriaNivelVida += soldado.getNivelVida();
+        }
+        return sumatoriaNivelVida;
+    }
     
      public void setMisSoldados(ArrayList<Soldado> misSoldados) {
         this.misSoldados = misSoldados;
