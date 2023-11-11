@@ -6,6 +6,8 @@ class Ejercito {
     private String reino;
     private ArrayList<Soldado> misSoldados;
     private String abrev;
+    private int fila=Aleatorio(1,10);
+    private int columna=Aleatorio(1,10);
     
      public Ejercito() { 
          String[] reinos = {"Inglaterra", "Francia", "Sacro Imperio", "Castilla - Aragón", "Moros"};
@@ -223,7 +225,7 @@ public  void modificarSoldado() {
     
     
     public String toString() {
-    return "\nEjército: " + reino + "\n\nSoldados: " + misSoldados.toString();
+    return "\nEJERCITO:================> " + reino + "\n\nSoldados: " + misSoldados.toString();
 }
     
      public void setMisSoldados(ArrayList<Soldado> misSoldados) {
@@ -249,6 +251,24 @@ public  void modificarSoldado() {
     public String getAbrev() {
         return abrev;
     }
+  // Métodos set y get para el atributo fila
+    public void setFila(int fila) {
+        this.fila = fila;
+    }
+
+    public int getFila() {
+        return fila;
+    }
+
+    // Métodos set y get para el atributo columna
+    public void setColumna(int columna) {
+        this.columna = columna;
+    }
+
+    public int getColumna() {
+        return columna;
+    }
+    
     //metodo para poder obtener numeros aleatorios
     public int Aleatorio(int min, int max) {
         return (int) (Math.random() * (max - min + 1)) + min;
