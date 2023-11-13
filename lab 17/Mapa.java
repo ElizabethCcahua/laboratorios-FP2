@@ -16,10 +16,10 @@ public class Mapa  {
     Ejercito ejercitoPrincipal2 = new Ejercito();
     ArrayList<String> combinacionesUtilizadas = new ArrayList<>();
     
-    ArrayList<Ejercito> reino1 = ejercitoPrincipal.generarEjercitosAleatorios();
+    ArrayList<Ejercito> reino1 = ejercitoPrincipal1.generarEjercitosAleatorios();
     noRepetir(reino1, combinacionesUtilizadas);
     
-    ArrayList<Ejercito> reino2 = ejercitoPrincipal.generarEjercitosAleatorios();
+    ArrayList<Ejercito> reino2 = ejercitoPrincipal2.generarEjercitosAleatorios();
     noRepetir(reino2, combinacionesUtilizadas);
 
     //por si en la generacion se repite el mismo nombre de reinoo
