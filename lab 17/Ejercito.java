@@ -83,6 +83,7 @@ class Ejercito {
     for (int i = 0; i < numEjercitos; i++) {
         Ejercito ejercito = new Ejercito(reino);
         ejercito.generarEjercitoSoldadosAleatorio();
+        ejercito.setNombre("Ejercito  "+i);
         ejercitos.add(ejercito);
     }
     return ejercitos;
