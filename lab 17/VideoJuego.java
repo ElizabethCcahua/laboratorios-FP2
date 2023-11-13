@@ -15,21 +15,14 @@ public class Lab16 {
             ArrayList<Ejercito> reino2 =reinos[1];
 
                 System.out.println(reino1.get(0).getReino()+"  vs  "+reino2.get(0).getReino());
-                boolean ojo = false;
+                
     
-    while (!reino1.isEmpty() && !reino2.isEmpty() && !ojo) {
+    while (!reino1.isEmpty() && !reino2.isEmpty()  ) {
         System.out.println("Turno de " + reino1.get(0).getReino());
         
-        ojo = moverEjercito(mapa.getTablero() , reino1, reino2);
-        
-        if (ojo) {
-            System.out.println("AMBOS EJERCITOS SE HAN ENCONTRADO");
-            mapa.getTablero();
-            break;
-        } else {
+         moverEjercito(mapa.getTablero() , reino1, reino2);     
             
             mapa.mostrarTablero(mapa.getTablero());
-        }
         
         if (reino2.isEmpty()) {
             System.out.println("EL GANADOR ES EL REINO 1");
@@ -37,16 +30,10 @@ public class Lab16 {
         }
         
         System.out.println("Turno de " + reino2.get(0).getReino());
-        ojo = moverEjercito(mapa.getTablero(), reino2, reino1);
-        
-        if (ojo) {
-            System.out.println("AMBOS EJERCITOS SE HAN ENCONTRADO");
-            mapa.getTablero();
-            break;
-        } else {
+        ojo = moverEjercito(mapa.getTablero(), reino2, reino1);   
+       
              mapa.mostrarTablero(mapa.getTablero());
-        }
-        
+           
         if (reino1.isEmpty()) {
             System.out.println("EL GANADOR ES EL REINO 2");
             break;
@@ -152,10 +139,10 @@ public class Lab16 {
             double random = Math.random();
             
             if (random < probabilidadSoldado1) {
-                System.out.println("¡El ejercito " + ejercito1.getNombre()+ "perteneciente al reino "+ejercito1.getReino()+"CON"+ejercito1.getSumatoriaNivelVidaSoldados()+"DE SUMATORIA DE VIDA gano por la posibilidad del "+ probabilidadSoldado1+"%");
+                System.out.println("¡El " + ejercito1.getNombre()+ " perteneciente al reino "+ejercito1.getReino()+"CON"+ejercito1.getSumatoriaNivelVidaSoldados()+"DE SUMATORIA DE VIDA gano por la posibilidad del "+ probabilidadSoldado1+"%\n");
                 ejercito1.aumentarVidaActualSoldados() ;
             } else {
-                System.out.println("¡El ejercito " + ejercito2.getNombre() + "perteneciente al reino  " +ejercito2.getReino()+" CON "+ejercito2.getSumatoriaNivelVidaSoldados()+" DE SUMATOR5IA DE VIDA gano por la posibilidad del "+ probabilidadSoldado2+"%");
+                System.out.println("¡El " + ejercito2.getNombre() + " perteneciente al reino  " +ejercito2.getReino()+" CON "+ejercito2.getSumatoriaNivelVidaSoldados()+" DE SUMATOR5IA DE VIDA gano por la posibilidad del "+ probabilidadSoldado2+"%\n");
                 ejercito2.aumentarVidaActualSoldados();
             }
         }
