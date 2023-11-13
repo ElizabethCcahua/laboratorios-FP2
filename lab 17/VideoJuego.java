@@ -4,6 +4,9 @@ public class Lab16 {
     public static void main(String[] args) {
             
             Scanner scanner = new Scanner(System.in);
+             boolean jugarDeNuevo = true;
+        
+    while (jugarDeNuevo) {
                  
             Mapa mapa = new Mapa();
            
@@ -12,7 +15,7 @@ public class Lab16 {
             ArrayList<Ejercito> reino2 =reinos[1];
 
                 System.out.println(reino1.get(0).getReino()+"  vs  "+reino2.get(0).getReino());
-    boolean ojo = false;
+                boolean ojo = false;
     
     while (!reino1.isEmpty() && !reino2.isEmpty() && !ojo) {
         System.out.println("Turno de " + reino1.get(0).getReino());
@@ -49,7 +52,14 @@ public class Lab16 {
             break;
         }
     }
+    System.out.println("¿Deseas jugar de nuevo? (s/n)");
+            String respuesta = scanner.nextLine();
+            if (respuesta.equalsIgnoreCase("n")) {
+                jugarDeNuevo = false;
+            }
         }
+        
+}
     
          // Reino turno: esta moviendo , Reino espera: solo observa
         public static boolean moverEjercito(Ejercito[][] tablero, ArrayList<Ejercito> reinoTurno, ArrayList<Ejercito> reinoEspera) {
