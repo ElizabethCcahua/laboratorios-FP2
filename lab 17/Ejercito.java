@@ -247,7 +247,7 @@ public  void modificarSoldado() {
             case "izquierda":
                 return this.columna - 1;
             case "derecha":
-                return this.fila + 1;
+                return this.columna + 1;
             default:
                 return this.columna;
         }
