@@ -23,25 +23,11 @@ public class Mapa  {
     noRepetir(reino2, combinacionesUtilizadas);
 
     //por si en la generacion se repite el mismo nombre de reinoo
-    if(ejercitoPrincipal1.getReino().equals(ejercitoPrincipal2.getReino())){
-              String[] reinos = {"Inglaterra", "Francia", "Sacro Imperio", "Castilla - Aragón", "Moros"};
-             
-              // Tomamos dos reinos aleatorios diferentes
-              int primero = (int) (Math.random() * reinos.length);
-              int segundo = (int) (Math.random() * reinos.length);
+    while(ejercitoPrincipal1.getReino().equals(ejercitoPrincipal2.getReino())){
+    reino2= ejercitoPrincipal2.generarEjercitosAleatorios();
      
-              while (primero == segundo) {
-                  segundo = (int) (Math.random() * reinos.length);
-              }
-              
-              for (int i = 0; i < reino1.size(); i++) {
-                  reino1.get(i).setNombre("Ejercito" + i + reino1.get(i).getReino());  
-              }
-     
-              for (int i = 0; i < reino2.size(); i++) {
-                  reino2.get(i).setReino("Ejercito" + i + reino2.get(i).getReino());
-              }
     }
+    
     BonusTerritorio(reino1);
     BonusTerritorio(reino2);
     
