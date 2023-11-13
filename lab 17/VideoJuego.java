@@ -10,6 +10,45 @@ public class Lab16 {
            ArrayList<Ejercito>[] reinos=  mapa.tableroBatalla();
            ArrayList<Ejercito> reino1 =reinos[0];
             ArrayList<Ejercito> reino2 =reinos[1];
+
+                System.out.println(reino1.get(0).getReino()+"  vs  "+reino2.get(0).getReino());
+    boolean ojo = false;
+    
+    while (!reino1.isEmpty() && !reino2.isEmpty() && !ojo) {
+        System.out.println("Turno de " + reino1.get(0).getReino());
+        
+        ojo = moverEjercito(mapa.getTablero() , reino1, reino2);
+        
+        if (ojo) {
+            System.out.println("AMBOS EJERCITOS SE HAN ENCONTRADO");
+            mapa.getTablero();
+            break;
+        } else {
+            
+            mapa.mostrarTablero(mapa.getTablero());
+        }
+        
+        if (reino2.isEmpty()) {
+            System.out.println("EL GANADOR ES EL REINO 1");
+            break;
+        }
+        
+        System.out.println("Turno de " + reino2.get(0).getReino());
+        ojo = moverEjercito(mapa.getTablero(), reino2, reino1);
+        
+        if (ojo) {
+            System.out.println("AMBOS EJERCITOS SE HAN ENCONTRADO");
+            mapa.getTablero();
+            break;
+        } else {
+             mapa.mostrarTablero(mapa.getTablero());
+        }
+        
+        if (reino1.isEmpty()) {
+            System.out.println("EL GANADOR ES EL REINO 2");
+            break;
+        }
+    }
         }
     
          // Reino turno: esta moviendo , Reino espera: solo observa
