@@ -3,23 +3,29 @@ import java.util.Scanner;
 
 
 class Ejercito {
+    private String nombre;
     private String reino;
     private ArrayList<Soldado> misSoldados;
-    private String abrev;
     private int fila=Aleatorio(1,10);
     private int columna=Aleatorio(1,10);
     
-     public Ejercito() { 
-         String[] reinos = {"Inglaterra", "Francia", "Sacro Imperio", "Castilla - Aragón", "Moros"};
-         String[] caract = {"Ing", "Fra", "Sac", "Cas", "Mor"};
-         this.reino=  reinos[(int)(Math.random() * reinos.length)];  
-         this.abrev=  caract[(int)(Math.random() * reinos.length)]; 
+     public Ejercito() {  
         this.misSoldados = new ArrayList<>(); 
     }
       public Ejercito(String reino) {
         this.reino = reino;
         this.misSoldados = new ArrayList<>();
     }
+    
+     public void asignarReinoAleatorio() {
+    String[] reinos = {"Inglaterra", "Francia", "Sacro Imperio", "Castilla - Aragón", "Moros"};
+   
+    int aleatorio = (int) (Math.random() * reinos.length);
+    setReino(reinos[aleatorio]);
+   
+     }
+      
+    
   //agrega una cantidad aleatoria de soldados
     public void generarEjercitoSoldadosAleatorio() {
       
@@ -62,7 +68,7 @@ class Ejercito {
         System.out.print("Ingrese la actitud del soldado: ");
         String actitud = scanner.nextLine();
 
-        Soldado soldado = new Soldado(" Soldado"+i, nivelAtaque, nivelDefensa, vidaActual, velocidad, actitud, abrev);
+        Soldado soldado = new Soldado(" Soldado"+i, nivelAtaque, nivelDefensa, vidaActual, velocidad, actitud, reino.substring(0, 3));
         misSoldados.add(soldado);
         System.out.println("Soldado agregado al ejército.");
     }
@@ -70,10 +76,12 @@ class Ejercito {
    
     // genera ejercitos para un reino
     public ArrayList<Ejercito> generarEjercitosAleatorios() {
+        asignarReinoAleatorio();
+        
     ArrayList<Ejercito> ejercitos = new ArrayList<>();
     int numEjercitos = Aleatorio(1, 10); // Genera un número aleatorio entre 1 y 10
     for (int i = 0; i < numEjercitos; i++) {
-        Ejercito ejercito = new Ejercito();
+        Ejercito ejercito = new Ejercito(reino);
         ejercito.generarEjercitoSoldadosAleatorio();
         ejercitos.add(ejercito);
     }
@@ -223,6 +231,27 @@ public  void modificarSoldado() {
     System.out.println("");
 }
     
+     public int obtenerFilaLlegada(int filaActual, String direccion) {
+        switch (direccion) {
+            case "arriba":
+                return this.fila- 1;
+            case "abajo":
+                return this.fila + 1;
+            default:
+                return this.fila;
+        }
+    }
+    
+    public int obtenerColumnaLlegada(int columnaActual, String direccion) {
+        switch (direccion) {
+            case "izquierda":
+                return this.columna - 1;
+            case "derecha":
+                return this.fila + 1;
+            default:
+                return this.columna;
+        }
+    }
     
     public String toString() {
     return "\nEJERCITO:================> " + reino + "\n\nSoldados: " + misSoldados.toString();
@@ -241,6 +270,11 @@ public  void modificarSoldado() {
         return sumatoriaNivelVida;
     }
 
+     public void aumentarVidaActualSoldados() {
+        for (Soldado soldado : misSoldados) {
+            soldado.setVidaActual(soldado.getVidaActual() + 1);
+        }
+    }
     
      public void setMisSoldados(ArrayList<Soldado> misSoldados) {
         this.misSoldados = misSoldados;
@@ -250,6 +284,15 @@ public  void modificarSoldado() {
         return misSoldados;
     }
     
+     public void setNombre(String nombre) {
+    this.nombre = nombre;
+    }
+
+    public String getNombre() {
+    return nombre;
+    }
+
+    
      public void setReino(String nombre) {
         this.reino = nombre;
     }
@@ -257,14 +300,8 @@ public  void modificarSoldado() {
      public String getReino() {
     return reino;
        }
-    
-    public void setAbrev(String abrev) {
-    this.abrev = abrev;
-    }
 
-    public String getAbrev() {
-        return abrev;
-    }
+    
     
      // Métodos set y get para el atributo fila
     public void setFila(int fila) {
