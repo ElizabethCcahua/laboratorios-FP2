@@ -4,17 +4,16 @@ import java.util.HashMap;
  
 public class Mapa  {
     private final String territorio;
-   
+    public Ejercito[][] tablero;
     
     public Mapa() {
         String[] territorios = {"bosque", "campo abierto", "montaña", "desierto", "playa"};
         this.territorio = territorios[(int)(Math.random() * territorios.length)];
-
     }
 
-    
    public ArrayList<Ejercito>[] tableroBatalla() {
-    Ejercito ejercitoPrincipal = new Ejercito();
+    Ejercito ejercitoPrincipal1 = new Ejercito();
+    Ejercito ejercitoPrincipal2 = new Ejercito();
     ArrayList<String> combinacionesUtilizadas = new ArrayList<>();
     
     ArrayList<Ejercito> reino1 = ejercitoPrincipal.generarEjercitosAleatorios();
@@ -22,34 +21,33 @@ public class Mapa  {
     
     ArrayList<Ejercito> reino2 = ejercitoPrincipal.generarEjercitosAleatorios();
     noRepetir(reino2, combinacionesUtilizadas);
-    
-    String[] reinos = {"Inglaterra", "Francia", "Sacro Imperio", "Castilla - Aragón", "Moros"};
-    String[] caract = {"Ing", "Fra", "Sac", "Cas", "Mor"};
-    // Tomamos dos reinos aleatorios diferentes
-    int primero = (int) (Math.random() * reinos.length);
-    String primerNombre = caract[primero];
-    int segundo = (int) (Math.random() * reinos.length);
-    while (primero == segundo) {
-        segundo = (int) (Math.random() * reinos.length);
-    }
-    String segundoNombre = caract[segundo];
-    for (int i = 0; i < reino1.size(); i++) {
-        reino1.get(i).setReino("Ejercito" + i + "X1");
-        reino1.get(i).setAbrev(primerNombre);
-    }
-    for (int i = 0; i < reino2.size(); i++) {
-        reino2.get(i).setReino("Ejercito" + i + "X2");
-        reino2.get(i).setAbrev(segundoNombre);
+
+    //por si en la generacion se repite el mismo nombre de reinoo
+    if(ejercitoPrincipal1.getReino().equals(ejercitoPrincipal2.getReino())){
+              String[] reinos = {"Inglaterra", "Francia", "Sacro Imperio", "Castilla - Aragón", "Moros"};
+             
+              // Tomamos dos reinos aleatorios diferentes
+              int primero = (int) (Math.random() * reinos.length);
+              int segundo = (int) (Math.random() * reinos.length);
+     
+              while (primero == segundo) {
+                  segundo = (int) (Math.random() * reinos.length);
+              }
+              
+              for (int i = 0; i < reino1.size(); i++) {
+                  reino1.get(i).setNombre("Ejercito" + i + reino1.get(i).getReino());  
+              }
+     
+              for (int i = 0; i < reino2.size(); i++) {
+                  reino2.get(i).setReino("Ejercito" + i + reino2.get(i).getReino());
+              }
     }
     BonusTerritorio(reino1);
     BonusTerritorio(reino2);
     
-    Ejercito[][] tablero = new Ejercito[10][10];
+    tablero = new Ejercito[10][10];
     ubicarEjercitosEnTablero(reino1, reino2, tablero);
     mostrarTablero(tablero);
-    System.out.println("\nTERRITORIO: " + territorio);
-    mostrarejercitosMapa(reino1);
-    mostrarejercitosMapa(reino2);
 
     // Devolvemos un arreglo de tamaño 2 con los reinos reino1 y reino2
     ArrayList<Ejercito>[] ambos = new ArrayList[2];
@@ -79,6 +77,7 @@ public class Mapa  {
             }
         }
     }
+ 
     private boolean identificarParejaUnica(int fila, int columna, ArrayList<String> combinacionesUtilizadas) {
         for (String combinacion : combinacionesUtilizadas) {
             if (combinacion.equals(fila + "-" + columna)) {
@@ -108,7 +107,7 @@ public class Mapa  {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 if (tablero[i][j] != null) {
-                    System.out.print("|" + tablero[i][j].getAbrev()+  tablero[i][j].getCantidadSoldados()+"-"+tablero[i][j].getSumatoriaNivelVidaSoldados());
+                    System.out.print("|" +tablero[i][j].getReino().substring(0, 3)+  tablero[i][j].getCantidadSoldados()+"-"+tablero[i][j].getSumatoriaNivelVidaSoldados());
                 } else {
                     System.out.print("|_______");
                 }
@@ -146,6 +145,14 @@ public class Mapa  {
     }
    
 
+ public String getTerritorio() {
+        return territorio;
+     }
+     
+    public Ejercito[][] getTablero() {
+    return tablero;
+}
+ 
     private int Aleatorio(int min, int max) {
         return (int) (Math.random() * (max - min + 1)) + min;
     }
