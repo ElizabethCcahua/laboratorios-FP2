@@ -103,7 +103,7 @@ public class Mapa  {
         }
     }
 
-   private void mostrarTablero(Ejercito[][] tablero) {
+   public void mostrarTablero(Ejercito[][] tablero) {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 if (tablero[i][j] != null) {
