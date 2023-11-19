@@ -47,8 +47,7 @@ public class Prac18 {
       System.out.println("\nEJERCITO @@@@@@@@@@@@@@@@@@@@@@@\n");
          ejer2.mostrarRankingPoder();
    
-      
-
+      determinarGanador(ejer1, ejer2);
       
     }
 
