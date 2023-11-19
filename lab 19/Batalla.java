@@ -6,7 +6,8 @@ public class Batalla {
 
             
         Scanner scanner = new Scanner(System.in);
-       
+        boolean jugarDeNuevo = true;
+        while (jugarDeNuevo) {
 
          Ejercito ejer1 = new Ejercito();
          Ejercito ejer2 = new Ejercito();
@@ -51,7 +52,12 @@ public class Batalla {
                     break;
                 }
             }
-
+     System.out.println("¿Deseas jugar de nuevo? (s/n)");
+            String respuesta = scanner.nextLine();
+            if (respuesta.equalsIgnoreCase("n")) {
+                jugarDeNuevo = false;
+            }
+        }
        
 }  
   
