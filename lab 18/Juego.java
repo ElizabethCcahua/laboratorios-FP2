@@ -1,7 +1,7 @@
 
 import java.util.ArrayList;
 
-public class Prac18 {
+public class Juego {
     public static void main ( String [] args){
 
      Ejercito ejer1 = new Ejercito();
@@ -141,5 +141,6 @@ public class Prac18 {
         System.out.println("El ejército @ es el ganador.");
     } else {
         System.out.println("Ambos ejércitos tienen la misma suma de vida. Es un empate.");
+        }
     }
 }
