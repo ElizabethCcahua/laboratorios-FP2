@@ -27,7 +27,27 @@ public class Prac18 {
     ubicarEjercitosEnTablero(ejercito1, ejercito2, tablero);
     mostrarTablero(tablero);
     
-
+      System.out.println("\nEJERCITO *************************\n");
+        ejer1.mostrarDatosSoldadoMayorVida();
+      System.out.println("\nEJERCITO @@@@@@@@@@@@@@@@@@@@@@@\n");
+        ejer2.mostrarDatosSoldadoMayorVida();
+      
+      System.out.println("\nEJERCITO *************************\n");
+        ejer1.calcularPromedioVidaSoldados();
+      System.out.println("\nEJERCITO @@@@@@@@@@@@@@@@@@@@@@@\n");
+        ejer2.calcularPromedioVidaSoldados();
+        
+      System.out.println("\nEJERCITO *************************\n");
+         ejer1.mostrarDatosSoldadosEnOrden();
+      System.out.println("\nEJERCITO @@@@@@@@@@@@@@@@@@@@@@@\n");
+         ejer2.mostrarDatosSoldadosEnOrden();
+         
+      System.out.println("\nEJERCITO *************************\n");   
+         ejer1.mostrarRankingPoder();
+      System.out.println("\nEJERCITO @@@@@@@@@@@@@@@@@@@@@@@\n");
+         ejer2.mostrarRankingPoder();
+   
+      
 
       
     }
