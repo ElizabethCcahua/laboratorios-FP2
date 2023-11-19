@@ -59,6 +59,70 @@ public Ejercito() {
         }              
  return misSoldados;
 }
+    
+public void mostrarDatosSoldadoMayorVida() {
+        int maxVida = 0;
+        Soldado soldadoMayorVida = null;
+        for (Soldado soldado : misSoldados) {
+            if (soldado.getVidaActual() > maxVida) {
+                maxVida = soldado.getVidaActual();
+                soldadoMayorVida = soldado;
+            }
+        }
+        if (soldadoMayorVida != null) {
+            System.out.println("Datos del soldado con mayor vida:");
+            System.out.println("Nombre: " + soldadoMayorVida.getNombre());
+            System.out.println("Vida actual: " + soldadoMayorVida.getVidaActual());
+           
+        } else {
+            System.out.println("No hay soldados en el ejército.");
+        }
+    }
+
+   public void calcularPromedioVidaSoldados() {
+    double sumatoriaVida = 0;
+    for (Soldado soldado : misSoldados) {
+        sumatoriaVida += soldado.getVidaActual();
+    }
+    
+        double promedio = sumatoriaVida / misSoldados.size();
+        System.out.println("El promedio de vida de los soldados es: " + promedio);
+    
+}
+
+    public void mostrarDatosSoldadosEnOrden() {
+        System.out.println("Datos de los soldados en el orden que fueron creados:");
+        for (Soldado soldado : misSoldados) {
+            System.out.println("Nombre: " + soldado.getNombre());
+            System.out.println("Vida actual: " + soldado.getVidaActual());
+            // Agrega aquí los demás atributos que quieras mostrar
+        }
+    }
+
+    
+    public void mostrarRankingPoder() {
+        System.out.println("Ranking de poder (nivel de vida descendente):"+ reino);
+        for (int i = 0; i < misSoldados.size() - 1; i++) {
+            for (int j = 0; j < misSoldados.size() - i - 1; j++) {
+                if (misSoldados.get(j).getNivelVida() < misSoldados.get(j + 1).getNivelVida()) {
+                    Soldado temp = misSoldados.get(j);
+                    misSoldados.set(j, misSoldados.get(j + 1));
+                    misSoldados.set(j + 1, temp);
+                }
+            }
+        }
+        for (Soldado soldado : misSoldados) {
+            System.out.println( soldado.getNombre() + " - Nivel de vida: " + soldado.getNivelVida());
+        }
+    }
+    
+    public int getSumatoriaNivelVidaSoldados() {
+        int sumatoriaNivelVida = 0;
+        for (Soldado soldado : misSoldados) {
+            sumatoriaNivelVida += soldado.getNivelVida();
+        }
+        return sumatoriaNivelVida;
+    }
 
   public int obtenerFilaLlegada(int filaActual, String direccion) {
         switch (direccion) {
