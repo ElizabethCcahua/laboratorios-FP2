@@ -4,8 +4,56 @@ import java.util.*;
 public class Batalla {
     public static void main ( String [] args){
 
+            
+        Scanner scanner = new Scanner(System.in);
+       
+
+         Ejercito ejer1 = new Ejercito();
+         Ejercito ejer2 = new Ejercito();
+    ArrayList<String> combinacionesUtilizadas = new ArrayList<>();
       
-    }
+     ArrayList<Soldado> ejercito1=ejer1.generarEjercitoSoldadosAleatorio();
+     for(int i=0;i<ejercito1.size();i++){
+     ejercito1.get(i).setEjercitoNombre("*");
+     }
+     
+    noRepetir(ejercito1, combinacionesUtilizadas);
+    
+    ArrayList<Soldado> ejercito2=ejer2.generarEjercitoSoldadosAleatorio();
+     for(int i=0;i<ejercito2.size();i++){
+     ejercito2.get(i).setEjercitoNombre("@");
+     }
+    noRepetir(ejercito2, combinacionesUtilizadas);
+    
+    
+    Soldado[][] tablero = new Soldado[10][10];
+ 
+    ubicarEjercitosEnTablero(ejercito1, ejercito2, tablero);
+    mostrarTablero(tablero);
+    
+        
+            
+            System.out.println(ejercito1.get(0).getEjercitoNombre() + "  vs  " + ejercito2.get(0).getEjercitoNombre());
+          
+            while (!ejercito1.isEmpty() && !ejercito2.isEmpty()) {
+                System.out.println("Turno de " + ejercito1.get(0).getEjercitoNombre());
+                moverEjercito(tablero, ejercito1, ejercito2);
+              mostrarTablero(tablero);
+                if (ejercito2.isEmpty()) {
+                    System.out.println("EL GANADOR ES EL EJERCITO 1");
+                    break;
+                }
+                System.out.println("Turno de " + ejercito2.get(0).getEjercitoNombre());
+                 moverEjercito(tablero, ejercito2, ejercito1);
+               mostrarTablero(tablero);
+                if (ejercito1.isEmpty()) {
+                    System.out.println("EL GANADOR ES EL EJERCITO 2");
+                    break;
+                }
+            }
+
+       
+}  
   
      public static void mostrarTablero(Soldado[][] tablero) {
        System.out.println("      1   2   3   4   5   6   7   8   9  10");
