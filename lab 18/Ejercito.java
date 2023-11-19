@@ -24,6 +24,42 @@ public Ejercito() {
         this.misSoldados = new ArrayList<>();
     }
 
+     //agrega una cantidad aleatoria de soldados
+       public ArrayList <Soldado> generarEjercitoSoldadosAleatorio() {
+      
+        int numSoldados = Aleatorio(1,10) ;
+            
+        for (int i = 0; i < numSoldados; i++) {
+            int tipoSoldado = Aleatorio(1,3);
+            switch (tipoSoldado) {
+                case 1:
+                    Espadachin espadachinCreado = new Espadachin();
+                    espadachinCreado.setNombre("Espadachin "+i);
+                    espadachinCreado.setVidaActual(Aleatorio(3,4));
+                    espadachin.add(espadachinCreado);
+                    misSoldados.add(espadachinCreado);
+                    break;
+                case 2:
+                    Arquero arqueroCreado = new Arquero();
+                    arqueroCreado.setNombre("Arquero "+i);
+                    arqueroCreado.setVidaActual(Aleatorio(1,3));
+                    arquero.add(arqueroCreado);
+                      misSoldados.add(arqueroCreado);
+                    break;
+                case 3:
+                    Caballero caballeroCreado = new Caballero();
+                    caballeroCreado.setNombre("Caballero "+i);
+                    caballeroCreado.setVidaActual(Aleatorio(3,5));
+                    caballero.add(caballeroCreado);
+                       misSoldados.add(caballeroCreado);
+                    break;
+                default:
+                    break;
+            }
+        }              
+ return misSoldados;
+}
+
   public int obtenerFilaLlegada(int filaActual, String direccion) {
         switch (direccion) {
             case "arriba":
