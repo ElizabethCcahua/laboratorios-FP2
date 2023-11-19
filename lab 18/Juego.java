@@ -4,7 +4,29 @@ import java.util.ArrayList;
 public class Prac18 {
     public static void main ( String [] args){
 
-
+     Ejercito ejer1 = new Ejercito();
+         Ejercito ejer2 = new Ejercito();
+    ArrayList<String> combinacionesUtilizadas = new ArrayList<>();
+    
+     ArrayList<Soldado> ejercito1=ejer1.generarEjercitoSoldadosAleatorio();
+     for(int i=0;i<ejercito1.size();i++){
+     ejercito1.get(i).setEjercitoNombre("*");
+     }
+     
+    noRepetir(ejercito1, combinacionesUtilizadas);
+    
+    ArrayList<Soldado> ejercito2=ejer2.generarEjercitoSoldadosAleatorio();
+     for(int i=0;i<ejercito2.size();i++){
+     ejercito2.get(i).setEjercitoNombre("@");
+     }
+    noRepetir(ejercito2, combinacionesUtilizadas);
+    
+    
+    Soldado[][] tablero = new Soldado[10][10];
+ 
+    ubicarEjercitosEnTablero(ejercito1, ejercito2, tablero);
+    mostrarTablero(tablero);
+    
 
 
       
