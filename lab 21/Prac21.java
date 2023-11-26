@@ -2,50 +2,50 @@
 public class Prac21 {
     public static void main ( String [] args){
 
-     Ejercito ejer1 = new Ejercito();
-         Ejercito ejer2 = new Ejercito();
-    ArrayList<String> combinacionesUtilizadas = new ArrayList<>();
-    
-     ArrayList<Soldado> ejercito1=ejer1.generarEjercitoSoldadosAleatorio();
-     for(int i=0;i<ejercito1.size();i++){
-     ejercito1.get(i).setEjercitoNombre("1");
-     }
-     
-    noRepetir(ejercito1, combinacionesUtilizadas);
-    
-    ArrayList<Soldado> ejercito2=ejer2.generarEjercitoSoldadosAleatorio();
-     for(int i=0;i<ejercito2.size();i++){
-     ejercito2.get(i).setEjercitoNombre("2");
-     }
-    noRepetir(ejercito2, combinacionesUtilizadas);
-    
-    
-    Soldado[][] tablero = new Soldado[10][10];
+    Mapa mapa = new Mapa();
+     Ejercito[] reinos=  mapa.tableroBatalla();
+              
+                
+         Ejercito ejer1 = reinos[0];
+             Ejercito ejer2 = reinos[1];
  
-    ubicarEjercitosEnTablero(ejercito1, ejercito2, tablero);
-    mostrarTablero(tablero);
     
-      System.out.println("\nEJERCITO 1\n");
+      //MAYOR VIDA   
+    System.out.println("\n_________SOLDADO MAYOR VIDA_______");  
+        System.out.println("EJERCITO 1"); 
         ejer1.mostrarDatosSoldadoMayorVida();
       System.out.println("\nEJERCITO 2\n");
         ejer2.mostrarDatosSoldadoMayorVida();
-      
-      System.out.println("\nEJERCITO 1\n");
+         System.out.println("");
+         //PROMEDIO   
+      System.out.println("\n_________PROMEDIO VIDA POR EJERCITO_______");
+      System.out.println("\nEJERCITO 1");
         ejer1.calcularPromedioVidaSoldados();
-      System.out.println("\nEJERCITO 2\n");
+      System.out.println("\nEJERCITO 2");
         ejer2.calcularPromedioVidaSoldados();
-        
+         //SOLDADOS EN ORDEN EN Q FUERON CREADOS  
+      System.out.println("\n_________SOLDADO EN ORDEN EN Q FUERON CREADOS_______");
+  
       System.out.println("\nEJERCITO 1\n");
          ejer1.mostrarDatosSoldadosEnOrden();
       System.out.println("\nEJERCITO 2\n");
          ejer2.mostrarDatosSoldadosEnOrden();
-         
+
+         //RANKING    
+       System.out.println("\n_________RANKING POR EJERCITO(nivel vida descendente)_______");
       System.out.println("\nEJERCITO 1\n");   
          ejer1.mostrarRankingPoder();
       System.out.println("\nEJERCITO 2\n");
          ejer2.mostrarRankingPoder();
    
-      determinarGanador(ejer1, ejer2);
+      //RESUMEN
+       System.out.println("\n_________RESUMEN FINAL_______");
+          System.out.println("\nEJERCITO 1: "+ejer1.getReino());
+        ejer1.mostrarResumen();
+         System.out.println("\nEJERCITO 2: "+ejer2.getReino());
+        ejer2.mostrarResumen();
+    
+        ejer1.mostrarProbabilidadVictoria(ejer2);
       
     }
 
