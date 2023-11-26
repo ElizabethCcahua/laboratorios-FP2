@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 class Ejercito {
      private String nombre;
     public String reino;
@@ -148,9 +149,7 @@ public void mostrarDatosSoldadoMayorVida() {
             }
         }
         if (soldadoMayorVida != null) {
-            System.out.println("Datos del soldado con mayor vida:");
-            System.out.println("Nombre: " + soldadoMayorVida.getNombre());
-            System.out.println("Vida actual: " + soldadoMayorVida.getVidaActual());
+            System.out.println(soldadoMayorVida.toString());
            
         } else {
             System.out.println("No hay soldados en el ejército.");
@@ -169,17 +168,15 @@ public void mostrarDatosSoldadoMayorVida() {
 }
 
     public void mostrarDatosSoldadosEnOrden() {
-        System.out.println("Datos de los soldados en el orden que fueron creados:\n");
+     
         for (Soldado soldado : misSoldados) {
-            System.out.println("Nombre: " + soldado.getNombre());
-            System.out.println("Vida actual: " + soldado.getVidaActual());
-            System.out.println("");
+            System.out.println(soldado.toString());
         }
     }
 
     
     public void mostrarRankingPoder() {
-        System.out.println("Ranking de poder (nivel de vida descendente):");
+    
         for (int i = 0; i < misSoldados.size() - 1; i++) {
             for (int j = 0; j < misSoldados.size() - i - 1; j++) {
                 if (misSoldados.get(j).getNivelVida() < misSoldados.get(j + 1).getNivelVida()) {
@@ -252,13 +249,6 @@ public void mostrarDatosSoldadoMayorVida() {
     }
     
     
-    public void setNombre(String nombre) {
-    this.nombre = nombre;
-    }
-
-    public String getNombre() {
-    return nombre;
-    }
 
      public void setReino(String nombre) {
         this.reino = nombre;
