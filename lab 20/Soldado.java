@@ -1,4 +1,12 @@
+
+
+
 class Soldado {
+    //-1 para que empiezen por 0
+   public static int contadorEspadachin = -1;
+    public static int contadorArquero = -1;
+    public static int contadorCaballero = -1;
+    public static int contadorLancero = -1;
     
   private String nombre;
     private int fila;
@@ -244,6 +252,38 @@ class Soldado {
      public String getEjercitoNombre() {
     return ejercitoNombre;
        }
+
+         public static int getContadorEspadachin() {
+        return contadorEspadachin;
+    }
+
+    public static int getContadorArquero() {
+        return contadorArquero;
+    }
+
+    public static int getContadorCaballero() {
+        return contadorCaballero;
+    }
+
+    public static int getContadorLancero() {
+        return contadorLancero;
+    }
+
+    protected static void aumentarContadorEspadachin() {
+        contadorEspadachin++;
+    }
+
+    protected static void aumentarContadorArquero() {
+        contadorArquero++;
+    }
+
+    protected static void aumentarContadorCaballero() {
+        contadorCaballero++;
+    }
+
+    protected static void aumentarContadorLancero() {
+        contadorLancero++;
+    }
      
 }
  
