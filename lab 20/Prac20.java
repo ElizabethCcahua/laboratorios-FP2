@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Prac20 {
     public static void main ( String [] args){
 
@@ -7,14 +9,14 @@ public class Prac20 {
     
      ArrayList<Soldado> ejercito1=ejer1.generarEjercitoSoldadosAleatorio();
      for(int i=0;i<ejercito1.size();i++){
-     ejercito1.get(i).setEjercitoNombre("*");
+     ejercito1.get(i).setEjercitoNombre("1");
      }
      
     noRepetir(ejercito1, combinacionesUtilizadas);
     
     ArrayList<Soldado> ejercito2=ejer2.generarEjercitoSoldadosAleatorio();
      for(int i=0;i<ejercito2.size();i++){
-     ejercito2.get(i).setEjercitoNombre("@");
+     ejercito2.get(i).setEjercitoNombre("2");
      }
     noRepetir(ejercito2, combinacionesUtilizadas);
     
@@ -24,24 +26,24 @@ public class Prac20 {
     ubicarEjercitosEnTablero(ejercito1, ejercito2, tablero);
     mostrarTablero(tablero);
     
-      System.out.println("\nEJERCITO *************************\n");
+      System.out.println("\nEJERCITO 1\n");
         ejer1.mostrarDatosSoldadoMayorVida();
-      System.out.println("\nEJERCITO @@@@@@@@@@@@@@@@@@@@@@@\n");
+      System.out.println("\nEJERCITO 2\n");
         ejer2.mostrarDatosSoldadoMayorVida();
       
-      System.out.println("\nEJERCITO *************************\n");
+      System.out.println("\nEJERCITO 1\n");
         ejer1.calcularPromedioVidaSoldados();
-      System.out.println("\nEJERCITO @@@@@@@@@@@@@@@@@@@@@@@\n");
+      System.out.println("\nEJERCITO 2\n");
         ejer2.calcularPromedioVidaSoldados();
         
-      System.out.println("\nEJERCITO *************************\n");
+      System.out.println("\nEJERCITO 1\n");
          ejer1.mostrarDatosSoldadosEnOrden();
-      System.out.println("\nEJERCITO @@@@@@@@@@@@@@@@@@@@@@@\n");
+      System.out.println("\nEJERCITO 2\n");
          ejer2.mostrarDatosSoldadosEnOrden();
          
-      System.out.println("\nEJERCITO *************************\n");   
+      System.out.println("\nEJERCITO 1\n");   
          ejer1.mostrarRankingPoder();
-      System.out.println("\nEJERCITO @@@@@@@@@@@@@@@@@@@@@@@\n");
+      System.out.println("\nEJERCITO 2\n");
          ejer2.mostrarRankingPoder();
    
       determinarGanador(ejer1, ejer2);
@@ -133,9 +135,9 @@ public class Prac20 {
     int sumaVidaEjercito2 = ejercito2.getSumatoriaNivelVidaSoldados();
 
     if (sumaVidaEjercito1 > sumaVidaEjercito2) {
-        System.out.println("El ejército * es el ganador.");
+        System.out.println("El ejército 1 es el ganador.");
     } else if (sumaVidaEjercito2 > sumaVidaEjercito1) {
-        System.out.println("El ejército @ es el ganador.");
+        System.out.println("El ejército 2 es el ganador.");
     } else {
         System.out.println("Ambos ejércitos tienen la misma suma de vida. Es un empate.");
     }
