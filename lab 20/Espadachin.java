@@ -3,6 +3,8 @@ class Espadachin extends Soldado{
     
     public Espadachin() {
         super();
+         this.setNombre("Espadachin " + (getContadorEspadachin() + 1));
+        aumentarContadorEspadachin();
         this.longitudEspada = Aleatorio(1, 5);
     }
     
