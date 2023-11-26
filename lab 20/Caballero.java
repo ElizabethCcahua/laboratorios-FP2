@@ -3,6 +3,9 @@ class Caballero extends Soldado{
     private String armaActual;
 
     public Caballero() {
+        super();
+        this.setNombre("Caballero " + (getContadorCaballero() + 1));
+        aumentarContadorCaballero();
         montado = false;
         armaActual = "lanza";
     }
