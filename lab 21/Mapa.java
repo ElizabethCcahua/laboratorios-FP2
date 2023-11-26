@@ -1,48 +1,65 @@
 import java.util.ArrayList; 
-import java.util.HashMap; 
+
  
-public class Mapa  {
+ class Mapa  {
     private final String territorio;
-    public Ejercito[][] tablero;
+    public Soldado[][] tablero;
     
     public Mapa() {
         String[] territorios = {"bosque", "campo abierto", "montaña", "desierto", "playa"};
         this.territorio = territorios[(int)(Math.random() * territorios.length)];
     }
 
-   public ArrayList<Ejercito>[] tableroBatalla() {
+   public Ejercito[] tableroBatalla() {
     Ejercito ejercitoPrincipal1 = new Ejercito();
     Ejercito ejercitoPrincipal2 = new Ejercito();
     ArrayList<String> combinacionesUtilizadas = new ArrayList<>();
-    
-    ArrayList<Ejercito> reino1 = ejercitoPrincipal1.generarEjercitosAleatorios();
+    ArrayList<Soldado> reino1 = ejercitoPrincipal1.generarEjercitoSoldadosAleatorio();
+
+    //para cambiar el  nombre en cada objeto ejercito sea el 1 o 2 u otros nombres
+    for (Soldado soldado : reino1) {
+        String nombreActual = soldado.getNombre();
+        String nuevoNombre = nombreActual + "X1";
+        soldado.setNombre(nuevoNombre);
+        
+        soldado.setEjercitoNombre("1");
+    }
     noRepetir(reino1, combinacionesUtilizadas);
     
-    ArrayList<Ejercito> reino2 = ejercitoPrincipal2.generarEjercitosAleatorios();
+    ArrayList<Soldado> reino2 = ejercitoPrincipal2.generarEjercitoSoldadosAleatorio();
+    
+     for (Soldado soldado : reino2) {
+        String nombreActual = soldado.getNombre();
+        String nuevoNombre = nombreActual + "X2";
+        soldado.setNombre(nuevoNombre);
+        
+         soldado.setEjercitoNombre("2");
+    }
     noRepetir(reino2, combinacionesUtilizadas);
 
     //por si en la generacion se repite el mismo nombre de reinoo
     while(ejercitoPrincipal1.getReino().equals(ejercitoPrincipal2.getReino())){
-    reino2= ejercitoPrincipal2.generarEjercitosAleatorios();
+    reino2= ejercitoPrincipal2.generarEjercitoSoldadosAleatorio();
      
     }
     
     BonusTerritorio(reino1);
     BonusTerritorio(reino2);
     
-    tablero = new Ejercito[10][10];
+    tablero = new Soldado[10][10];
     ubicarEjercitosEnTablero(reino1, reino2, tablero);
     mostrarTablero(tablero);
 
+
     // Devolvemos un arreglo de tamaño 2 con los reinos reino1 y reino2
-    ArrayList<Ejercito>[] ambos = new ArrayList[2];
-    ambos[0] = reino1;
-    ambos[1] = reino2;
-    return ambos;
+    Ejercito[] ejercitos = new Ejercito[2];
+    ejercitos[0] = ejercitoPrincipal1;
+    ejercitos[1] = ejercitoPrincipal2;
+    return ejercitos;
 }
 
   // para que no hayan 2 en un mismo lugar
-    public void noRepetir(ArrayList<Ejercito> reino, ArrayList<String> combinacionesUtilizadas) {
+    public void noRepetir(ArrayList<Soldado> reino, ArrayList<String> combinacionesUtilizadas) {
         for (int i = 0; i < reino.size(); i++) {
             int  fila = reino.get(i).getFila();
              int columna =reino.get(i).getColumna();
@@ -74,59 +91,55 @@ public class Mapa  {
         return true;
     }
 
-    private void ubicarEjercitosEnTablero(ArrayList<Ejercito> reino1, ArrayList<Ejercito> reino2, Ejercito[][] tablero) {
-        for (Ejercito ejercito : reino1) {
-            int fila = ejercito.getFila();
-            int columna = ejercito.getColumna();
-            tablero[fila - 1][columna - 1] = ejercito;
+    private void ubicarEjercitosEnTablero(ArrayList<Soldado> reino1, ArrayList<Soldado> reino2, Soldado[][] tablero) {
+        for (Soldado soldado : reino1) {
+            int fila = soldado.getFila();
+            int columna = soldado.getColumna();
+            tablero[fila - 1][columna - 1] = soldado;
         }
 
-        for (Ejercito ejercito : reino2) {
-            int fila = ejercito.getFila();
-            int columna = ejercito.getColumna();
-            tablero[fila - 1][columna - 1] = ejercito;
+        for (Soldado soldado : reino2) {
+            int fila = soldado.getFila();
+            int columna = soldado.getColumna();
+            tablero[fila - 1][columna - 1] = soldado;
         }
     }
 
-   public void mostrarTablero(Ejercito[][] tablero) {
+   public void mostrarTablero(Soldado[][] tablero) {
+      System.out.println("      1   2   3   4   5   6   7   8   9  10");
+       System.out.println("     _______________________________________");
         for (int i = 0; i < 10; i++) {
+         if(i<9)
+              System.out.print(" " + (i+1)+"  "); 
+            else{
+            System.out.print(" " + (i+1)+" ");}
+         
             for (int j = 0; j < 10; j++) {
                 if (tablero[i][j] != null) {
-                    System.out.print("|" +tablero[i][j].getReino().substring(0, 3)+  tablero[i][j].getCantidadSoldados()+"-"+tablero[i][j].getSumatoriaNivelVidaSoldados());
+                    System.out.print("|" +tablero[i][j].getEjercitoNombre()+tablero[i][j].getNombre().substring(0, 1)+  tablero[i][j].getVidaActual());
                 } else {
-                    System.out.print("|_______");
+                    System.out.print("|___");
                 }
             }
-            System.out.println();
+            System.out.println("|");
         }
     }
 
 
-    public void mostrarejercitosMapa(ArrayList<Ejercito> ejercitos) {
-        
-        for (Ejercito ejercito : ejercitos) {
-            System.out.println(ejercito.toString());
-        }
-    }
 
-    public void BonusTerritorio(ArrayList<Ejercito> ejercitos) {
-        HashMap<String, String> bonusTerritorio = new HashMap<>();
-        bonusTerritorio.put("Inglaterra", "bosque");
-        bonusTerritorio.put("Francia", "campo abierto");
-        bonusTerritorio.put("Castilla - Aragón", "montaña");
-        bonusTerritorio.put("Moros", "desierto");
-        bonusTerritorio.put("Sacro Imperio", "bosque, playa , campo abierto");
-
-        for (Ejercito ejercito : ejercitos) {
-            String reino = ejercito.getReino();
-            if (bonusTerritorio.containsKey(reino) && bonusTerritorio.get(reino).contains(territorio)) {
-                ArrayList<Soldado> soldados = ejercito.getMisSoldados();
-                for (Soldado soldado : soldados) {
-                    int nuevoNivelVida = soldado.getNivelVida() + 1;
-                    soldado.setNivelVida(nuevoNivelVida);
-                }
-            }
+    public void BonusTerritorio(ArrayList<Soldado> ejercitos) {
+        for (Soldado soldado : ejercitos) {
+        String reino = soldado.getNombre();
+        if (reino.equals("Inglaterra") && territorio.equals("bosque") ||
+            reino.equals("Francia") && territorio.equals("campo abierto") ||
+            reino.equals("Castilla - Aragón") && territorio.equals("montaña") ||
+            reino.equals("Moros") && territorio.equals("desierto") ||
+            reino.equals("Sacro Imperio") && (territorio.equals("bosque") || territorio.equals("playa") || territorio.equals("campo abierto"))) {
+            
+            int nuevoNivelVida = soldado.getNivelVida() + 1;
+            soldado.setNivelVida(nuevoNivelVida);
         }
+       }
     }
    
 
@@ -134,7 +147,7 @@ public class Mapa  {
         return territorio;
      }
      
-    public Ejercito[][] getTablero() {
+    public Soldado[][] getTablero() {
     return tablero;
 }
  
