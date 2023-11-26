@@ -1,8 +1,14 @@
 class Arquero extends Soldado{
     private int numFlechas;
+    private static final int NIVEL_ATAQUE = 7;
+    private static final int NIVEL_DEFENSA = 3;
     
     public Arquero() {
          super();
+        nivelAtaque= NIVEL_ATAQUE ;
+       nivelDefensa=NIVEL_DEFENSA ;
+       nivelVida=Soldado.Aleatorio(3, 5);
+       vidaActual=nivelVida;
         this.setNombre("Arquero " + (getContadorArquero() + 1));
         aumentarContadorArquero();
         this.numFlechas = Aleatorio(1, 10);
@@ -21,6 +27,12 @@ class Arquero extends Soldado{
     
     public int getNumFlechas() {
         return numFlechas;
+    }
+
+      @Override
+    public String toString() {
+        return super.toString() +
+                "Número de flechas: " + numFlechas;
     }
     
 }
