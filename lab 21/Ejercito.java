@@ -93,6 +93,50 @@ class Ejercito {
     return misSoldados;
 }
 
+     public void mostrarResumen() {
+    int espadachines = 0;
+    int arqueros = 0;
+    int caballeros = 0;
+    int lanceros = 0;
+    int nivelVidaTotal = 0;
+    
+    for (Soldado soldado : misSoldados) {
+        if (soldado instanceof Espadachin) {
+            espadachines++;
+        } else if (soldado instanceof Arquero) {
+            arqueros++;
+        } else if (soldado instanceof Caballero) {
+            caballeros++;
+        } else if (soldado instanceof Lancero) {
+            lanceros++;
+        }
+        
+        nivelVidaTotal += soldado.getVidaActual();
+    }
+    
+    System.out.println("Cantidad total de soldados creados: " + misSoldados.size());
+    System.out.println("Espadachines: " + espadachines);
+    System.out.println("Arqueros: " + arqueros);
+    System.out.println("Caballeros: " + caballeros);
+    System.out.println("Lanceros: " + lanceros);
+    System.out.println("Nivel de vida total del ejército: " + nivelVidaTotal);
+}
+
+     public void mostrarProbabilidadVictoria(Ejercito ejercito2) {
+    double porcentajeEjercito1 = (double) getSumatoriaNivelVidaSoldados() / (getSumatoriaNivelVidaSoldados() + ejercito2.getSumatoriaNivelVidaSoldados()) * 100;
+    double porcentajeEjercito2 = (double) ejercito2.getSumatoriaNivelVidaSoldados() / (getSumatoriaNivelVidaSoldados() + ejercito2.getSumatoriaNivelVidaSoldados()) * 100;
+
+    System.out.println("\nEjercito 1: " + reino + ": " + porcentajeEjercito1 + "% de probabilidad de victoria");
+    System.out.println("Ejercito 2: " + ejercito2.getReino() + ": " + porcentajeEjercito2 + "% de probabilidad de victoria");
+
+    double aleatorio = Math.random() * 100;
+
+    if (aleatorio <= porcentajeEjercito1) {
+        System.out.println("El ganador es el ejercito 1 de: " + reino + ". Ya que al generar los porcentajes de probabilidad de victoria basada en los niveles de vida de sus soldados y aplicando un experimento aleatorio salió vencedor. (Aleatorio generado: " + aleatorio + ")");
+    } else {
+        System.out.println("El ganador es el ejercito 2 de: " + ejercito2.getReino() + ". Ya que al generar los porcentajes de probabilidad de victoria basada en los niveles de vida de sus soldados y aplicando un experimento aleatorio salió vencedor. (Aleatorio generado: " + aleatorio + ")");
+    }
+}
 
 public void mostrarDatosSoldadoMayorVida() {
         int maxVida = 0;
