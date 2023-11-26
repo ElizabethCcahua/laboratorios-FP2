@@ -1,8 +1,14 @@
 class Lancero extends Soldado {
     private int longitudLanza;
-
+     private static final int NIVEL_ATAQUE = 5;
+    private static final int NIVEL_DEFENSA = 10;
+    
     public Lancero() { 
        super();
+        nivelAtaque= NIVEL_ATAQUE ;
+       nivelDefensa=NIVEL_DEFENSA ;   
+       nivelVida=Soldado.Aleatorio(5, 8);
+       vidaActual=nivelVida;
         this.setNombre("Lancero " + (getContadorLancero() + 1));
         aumentarContadorLancero();
         this.longitudLanza = Aleatorio(1, 10);
