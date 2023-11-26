@@ -3,18 +3,13 @@ import java.util.ArrayList;
 class Ejercito {
     private String nombre;
     public String reino;
-  
-    private ArrayList<Espadachin> espadachin;
-    private ArrayList<Caballero> caballero;
-    private ArrayList<Arquero> arquero;
+    // almacenaremos todos los herederos de la clase soldado en :
     private ArrayList<Soldado> misSoldados;
     private int fila=Aleatorio(1,10);
     private int columna=Aleatorio(1,10);
     
      public Ejercito() { 
-         this.espadachin=new ArrayList<>(); 
-         this.arquero=new ArrayList<>();
-         this.caballero=new ArrayList<>();
+         
         this.misSoldados = new ArrayList<>(); 
     }
      
@@ -24,39 +19,50 @@ class Ejercito {
         this.misSoldados = new ArrayList<>();
     }
       
-        //agrega una cantidad aleatoria de soldados
+  //agrega una cantidad aleatoria de soldados,Cambio para Agregar los herederos a un solo array incluyendo lancero: 
        public ArrayList <Soldado> generarEjercitoSoldadosAleatorio() {
       
         int numSoldados = Aleatorio(1,10) ;
             
         for (int i = 0; i < numSoldados; i++) {
-            int tipoSoldado = Aleatorio(1,3);
+            int tipoSoldado = Aleatorio(1,4);
             switch (tipoSoldado) {
                 case 1:
                     Espadachin espadachinCreado = new Espadachin();
-                    espadachinCreado.setNombre("Espadachin "+i);
+                   
                     espadachinCreado.setVidaActual(Aleatorio(3,4));
-                    espadachin.add(espadachinCreado);
+             
                     misSoldados.add(espadachinCreado);
                     break;
                 case 2:
                     Arquero arqueroCreado = new Arquero();
-                    arqueroCreado.setNombre("Arquero "+i);
+                
                     arqueroCreado.setVidaActual(Aleatorio(1,3));
-                    arquero.add(arqueroCreado);
+              
                       misSoldados.add(arqueroCreado);
                     break;
                 case 3:
                     Caballero caballeroCreado = new Caballero();
-                    caballeroCreado.setNombre("Caballero "+i);
+               
                     caballeroCreado.setVidaActual(Aleatorio(3,5));
-                    caballero.add(caballeroCreado);
+             
                        misSoldados.add(caballeroCreado);
+                    break;
+                case 4:
+                    Lancero lanceroCreado = new Lancero();
+         
+                    lanceroCreado.setVidaActual(Aleatorio(1, 2));
+                
+                    misSoldados.add(lanceroCreado);
                     break;
                 default:
                     break;
             }
-        }              
+        }    
+           Soldado.contadorEspadachin=0;
+            Soldado.contadorCaballero=0;
+            Soldado.contadorArquero=0;
+            Soldado.contadorLancero=0;
  return misSoldados;
 }
 
