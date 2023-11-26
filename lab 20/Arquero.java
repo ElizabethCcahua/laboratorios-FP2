@@ -3,6 +3,8 @@ class Arquero extends Soldado{
     
     public Arquero() {
         super();
+        this.setNombre("Arquero " + (getContadorArquero() + 1));
+        aumentarContadorArquero();
         this.numFlechas = Aleatorio(1, 10);
     }
     
